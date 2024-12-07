@@ -6,3 +6,7 @@ npm install styled-components
 
 # Install Fonts 
 expo install expo-font @expo-google-fonts/roboto
+
+# Intall Icons
+npm install --save phosphor-react-native
+expo install react-native-svg

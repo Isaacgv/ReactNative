@@ -1,0 +1,8 @@
+# This plugin can simplify the require/import paths in your project
+npm install --save-dev babel-plugin-module-resolver
+
+# Styled Componets
+npm install styled-components
+
+# Install Fonts 
+expo install expo-font @expo-google-fonts/roboto

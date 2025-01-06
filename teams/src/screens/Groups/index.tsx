@@ -33,10 +33,11 @@ export function Groups() {
             message="How about registering the first class?" 
           />
         )}
+        showsVerticalScrollIndicator={false}
       />
 
       <Button 
-        title='Criar nova turma'
+        title='Create New Group'
       />  
 
 

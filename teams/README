@@ -10,3 +10,8 @@ expo install expo-font @expo-google-fonts/roboto
 # Intall Icons
 npm install --save phosphor-react-native
 expo install react-native-svg
+
+# React Navigator
+npm install @react-navigation/native
+npx expo install react-native-screens react-native-safe-area-context
+npm install @react-navigation/native-stack

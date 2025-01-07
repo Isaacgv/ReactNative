@@ -25,7 +25,7 @@ export function Players() {
       />
       <Form>
         <Input 
-          placeholder="Nome da pessoa"
+          placeholder="Name"
           autoCorrect={false}
         />
 
@@ -34,10 +34,6 @@ export function Players() {
         />
       </Form>
 
-      <Filter 
-        title="Time A"
-        isActive
-      />
 
     <HeaderList>
         <FlatList 

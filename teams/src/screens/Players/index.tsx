@@ -18,6 +18,7 @@ import { playerAddByGroup } from '@storage/player/playerAddByGroup';
 import { playersGetByGroup } from '@storage/player/playersGetByGroup';
 import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO';
 import { playersGetByGroupAndTeam } from '@storage/player/playersGetByGroupAndTeam';
+import { playerRemoveByGroup } from '@storage/player/playerRemoveByGroup';
 
 type RouteParams = {
   group: string;
@@ -51,7 +52,7 @@ export function Players() {
 
       setNewPlayerName('');
 
-      await fetchPlayersByTeam();
+      fetchPlayersByTeam();
 
     } catch (error) {
       if(error instanceof AppError){
@@ -60,6 +61,18 @@ export function Players() {
         console.log(error);
         Alert.alert('New person', 'Unable to add.');
       }
+    }
+  }
+
+
+  async function handlePlayerRemove(playerName: string) {
+    try {
+      await playerRemoveByGroup(playerName, group);
+      fetchPlayersByTeam()
+
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Remove person', 'Unable to remove this person.');
     }
   }
 
@@ -129,7 +142,7 @@ export function Players() {
         renderItem={({ item }) => (
           <PlayerCard 
             name={item.name} 
-            onRemove={() => {}}
+            onRemove={() => handlePlayerRemove(item.name)}
           />
         )}
         ListEmptyComponent={() => (

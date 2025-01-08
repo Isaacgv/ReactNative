@@ -95,17 +95,17 @@ export function Players() {
 
     } catch (error) {
       console.log(error);
-      Alert.alert('Remover Grupo', 'Não foi posível remover o grupo');
+      Alert.alert('Remove Group', 'Unable to remove group');
     }
   }
 
   async function handleGroupRemove() {
     Alert.alert(
-      'Remover',
-      'Deseja remover o grupo?',
+      'Remove',
+      'Do you want to remove the group?',
       [
-        { text: 'Não', style: 'cancel' },
-        { text: 'Sim', onPress: () => groupRemove() }
+        { text: 'No', style: 'cancel' },
+        { text: 'Yes', onPress: () => groupRemove() }
       ]
     )
   }

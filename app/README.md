@@ -10,3 +10,6 @@
 
 # Create folder theme config
     npx gluestack-ui-scripts eject-theme
+
+# install SVG Transformer
+    npm install --save-dev react-native-svg-transformer

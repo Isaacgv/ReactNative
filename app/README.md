@@ -11,5 +11,10 @@
 # Create folder theme config
     npx gluestack-ui-scripts eject-theme
 
-# install SVG Transformer
+# Install SVG Transformer
     npm install --save-dev react-native-svg-transformer
+
+# Install React Navigation
+    npm install @react-navigation/native
+    npx expo install react-native-screens react-native-safe-area-context
+    npm install @react-navigation/native-stack

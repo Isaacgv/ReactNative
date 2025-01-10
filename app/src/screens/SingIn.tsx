@@ -33,7 +33,7 @@ export function SignIn() {
 
                 <VStack flex={1} px="$10" pb="$16">
                     <Center my="$24">
-                        <Logo />
+                    <Logo />
                         <Text color="$gray100" fontSize="$sm">
                             Train your mind and body
                         </Text>

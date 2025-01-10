@@ -12,9 +12,11 @@
     npx gluestack-ui-scripts eject-theme
 
 # Install SVG Transformer
-    npm install --save-dev react-native-svg-transformer
+    npm install react-native-svg --legacy-peer-deps
+    npm install --save-dev react-native-svg-transformer --legacy-peer-deps
 
 # Install React Navigation
     npm install @react-navigation/native
     npx expo install react-native-screens react-native-safe-area-context
     npm install @react-navigation/native-stack
+    npm install @react-navigation/bottom-tabs

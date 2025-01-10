@@ -38,6 +38,13 @@ export function SignIn() {
                     <Input placeholder="Password" secureTextEntry/>
                     <Button title="Access" />
                 </Center>
+
+                <Center flex={1} justifyContent="flex-end" marginTop="$4">
+                    <Text color="$gray100" fontSize="$sm" mb="$3" fontFamily="$body">
+                        Still don't have access?
+                    </Text>
+                    <Button title="Create account" variant="outline" />
+            </Center>
         </VStack>
 
         </VStack>

@@ -1,11 +1,52 @@
 import { Button } from '@components/Button'
 import { Input } from '@components/Input'
+import * as ImagePicker from "expo-image-picker"
+import { useState } from 'react'
+
 import { ScreenHeader } from '@components/ScreenHeader'
 import { UserPhoto } from '@components/UserPhoto'
 import { Center, Heading, Text, VStack } from '@gluestack-ui/themed'
-import { ScrollView, TouchableOpacity } from 'react-native'
+import * as FileSystem from 'expo-file-system'
+
+import { Alert, ScrollView, TouchableOpacity } from 'react-native'
 
 export function Profile() {
+    const [userPhoto, setUserPhoto] = useState(
+        'https://github.com/Isaacgv.png',
+    )
+
+    async function handleUserPhotoSelect() {
+        try {
+            const photoSelected = await ImagePicker.launchImageLibraryAsync({
+              mediaTypes: ImagePicker.MediaTypeOptions.Images,
+              quality: 1,
+              aspect: [4, 4],
+              allowsEditing: true,
+            })
+
+            if (photoSelected.canceled) {
+                return
+            }
+
+            const photoUri = photoSelected.assets[0].uri
+
+            if (photoUri) {
+                const photoInfo = (await FileSystem.getInfoAsync(photoUri)) as {
+                    size: number
+                }
+
+                if (photoInfo.size && photoInfo.size / 1024 / 1024 > 5) {
+                    return Alert.alert(
+                        'This image is very large. Choose one up to 5MB',
+                    )
+                }
+                setUserPhoto(photoSelected.assets[0].uri)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <VStack flex={1}>
             <ScreenHeader title="Profil" />
@@ -13,11 +54,11 @@ export function Profile() {
             <ScrollView contentContainerStyle={{ paddingBottom: 36 }}>
                 <Center mt="$6" px="$10">
                     <UserPhoto
-                        source={{ uri: 'https://github.com/Isaacgv.png' }}
+                        source={{ uri: userPhoto }}
                         size="xl"
                         alt="User image"
                     />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleUserPhotoSelect}>
                         <Text
                             color="$green500"
                             fontFamily="$heading"

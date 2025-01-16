@@ -23,3 +23,7 @@
 
 # Install Icons
      npm install lucide-react-native
+
+# Install image picker
+    npx expo install expo-image-picker
+    npx expo install expo-file-system

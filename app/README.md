@@ -27,3 +27,7 @@
 # Install image picker
     npx expo install expo-image-picker
     npx expo install expo-file-system
+
+# Install React hook Form
+    npm install react-hook-form
+    npm install @hookform/resolvers yup

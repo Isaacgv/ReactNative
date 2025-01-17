@@ -6,6 +6,7 @@ import {
     Icon,
     VStack,
   } from '@gluestack-ui/themed'
+  
   import { X } from 'lucide-react-native'
 
   type Props = {

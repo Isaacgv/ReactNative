@@ -5,7 +5,7 @@ import {
     ScrollView,
     Text,
     VStack,
-    useToast
+    useToast,
   } from '@gluestack-ui/themed'
 
 import { Alert } from 'react-native';
@@ -57,7 +57,7 @@ export function SignUp() {
   const navigation = useNavigation();
 
   function handleGoBack() {
-        navigation.goBack()
+    navigation.goBack()
   }
 
 

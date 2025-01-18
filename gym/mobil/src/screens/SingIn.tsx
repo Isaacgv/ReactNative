@@ -1,5 +1,5 @@
 import { Controller, useForm } from 'react-hook-form';
-import { Center, Heading, Image, ScrollView, Text, VStack } from '@gluestack-ui/themed'
+import { Center, Heading, Image, ScrollView, Text, VStack, useToast } from '@gluestack-ui/themed'
 import { useNavigation } from "@react-navigation/native"
 
 import { AuthNavigatorRoutesProps} from "@routes/auth.routes"
@@ -10,12 +10,18 @@ import Logo from '@assets/logo.svg'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 
+import { ToastMessage } from '@components/ToastMessage'
+import { AppError } from '@utils/AppError';
+
 type FormData = {
     email: string;
     password: string;
 }  
 
 export function SignIn() {
+    
+    const toast = useToast();
+
     const { singIn } = useAuth();
 
     const navigation = useNavigation<AuthNavigatorRoutesProps>()
@@ -26,8 +32,26 @@ export function SignIn() {
         navigation.navigate("signUp")
     }
 
-    async function handleSignIn({ email, password }: FormData){
-        await singIn(email, password);
+    async function handleSignIn({ email, password }: FormData) {
+        try {
+            await singIn(email, password);
+        } catch (error) {
+            const isAppError = error instanceof AppError;
+     
+            const title =  isAppError ? error.message : 'Unable to enter. Try again later.'
+        
+            toast.show({
+                placement: 'top',
+                render: ({ id }) => (
+                    <ToastMessage
+                        id={id}
+                        action="error" 
+                        title = {title}
+                        onClose={() => toast.close(id)}
+                    />
+                )
+            })
+        }
     }
 
     return (

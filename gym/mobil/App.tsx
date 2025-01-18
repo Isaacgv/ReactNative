@@ -5,6 +5,8 @@ import {
   Roboto_400Regular,
 } from '@expo-google-fonts/roboto'
 
+import { AuthContextProvider } from '@contexts/AuthContext';
+
 import { GluestackUIProvider } from '@gluestack-ui/themed'
 import { config } from './config/gluestack-ui.config'
 import { Loading } from '@components/Loading'
@@ -21,7 +23,9 @@ export default function App() {
           translucent
         />
         
-        {fontsLoaded ? <Routes /> : <Loading />}
+        <AuthContextProvider>
+          {fontsLoaded ? <Routes /> : <Loading />}
+        </AuthContextProvider>
         
     </GluestackUIProvider>
   );

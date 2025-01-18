@@ -9,6 +9,7 @@ import BackgroundImg from '@assets/background.png'
 import Logo from '@assets/logo.svg'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
+import { useState } from 'react';
 
 import { ToastMessage } from '@components/ToastMessage'
 import { AppError } from '@utils/AppError';
@@ -20,10 +21,11 @@ type FormData = {
 
 export function SignIn() {
     
+    const [isLoading, setIsLoading] = useState(false)
+
     const toast = useToast();
 
     const { singIn } = useAuth();
-
     const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>()
@@ -34,6 +36,7 @@ export function SignIn() {
 
     async function handleSignIn({ email, password }: FormData) {
         try {
+            setIsLoading(true);
             await singIn(email, password);
         } catch (error) {
             const isAppError = error instanceof AppError;
@@ -51,6 +54,8 @@ export function SignIn() {
                     />
                 )
             })
+
+            setIsLoading(false);
         }
     }
 
@@ -108,7 +113,10 @@ export function SignIn() {
                             />
                             )}
                         />
-                        <Button title="Access" onPress={handleSubmit(handleSignIn)}/>
+                        <Button 
+                            title="Access" 
+                            onPress={handleSubmit(handleSignIn)} 
+                            isLoading={isLoading}/>
                     </Center>
 
                     <Center flex={1} justifyContent="flex-end" marginTop="$4">

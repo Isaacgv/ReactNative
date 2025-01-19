@@ -34,3 +34,6 @@
 
 # Install Axios
     npm install axios
+
+# Install Async Storage
+    npx expo install @react-native-async-storage/async-storage

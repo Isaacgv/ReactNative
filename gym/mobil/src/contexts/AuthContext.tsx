@@ -59,7 +59,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps)  {
 
 
     return (
-        <AuthContext.Provider value={{ user,singIn }}>
+        <AuthContext.Provider value={{ user, singIn, isLoadingUserStorageData }}>
             {children}
         </AuthContext.Provider>
     )
